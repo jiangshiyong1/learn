@@ -136,10 +136,29 @@ Promise.prototype.then = function (onfufilled, onrejected) {
 
 }
 
+Promise.prototype.catch = function (onReject) {
+    this.then(null, onrejected)
+}
+
 Promise.all = function (promises) {
     return new Promise(function (resolve, reject) {
-        for(let i = 0; i<promises.length; i++){
-            
+        let result = []
+        let count = 0
+        for (let i = 0; i < promises.length; i++) {
+            promises[i].then(function (data) {
+                result[i] = data
+                if (++count == promises.length) {
+                    resolve(result)
+                }
+            }, reject)
+        }
+    })
+}
+
+Promise.race = function (promises) {
+    return new Promise(function (resolve, reject) {
+        for (let i = 0; i < promises.length; i++) {
+            promises[i].then(resolve, reject)
         }
     })
 }

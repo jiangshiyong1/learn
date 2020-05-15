@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单例模弹框</title>
+</head>
+<style>
+    #modal {
+        position: fixed;
+        height: 300px;
+        width: 300px;
+        left: 50%;
+        top: 50%;
+        border: 1px solid black;
+        /* margin-left: -150px;
+        margin-top:-150px; */
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+</style>
+
+<body>
+    <button id='open'>打开</button>
+    <button id='close'>关闭</button>
+</body>
+
+<script>
+
+    const Modal = (function() {
+        let modal = null
+        return function () {
+            if(!modal) {
+                modal = document.createElement('div')
+                modal.id = 'modal'
+                modal.innerHTML = '这是个弹框'
+                modal.style.display = 'none'
+                document.body.append(modal)
+            }
+            return modal
+        }
+    })()
+
+    document.getElementById("open").addEventListener('click', function(){
+        const modal = new Modal()
+        modal.style.display = 'block'
+    })
+    document.getElementById("close").addEventListener('click', function(){
+        const modal = new Modal()
+        modal.style.display = 'none'
+    })
+</script>
+
+</html>

@@ -22,10 +22,12 @@
 //     console.log(data)
 // })
 
+
+const Promise = require('./myPromise')
 let p1 = new Promise(function (resolve, reject) {
     setTimeout(() => {
         resolve(10)
-    }, 1000);
+    }, 2000);
 })
 
 let p2 = new Promise(function (resolve, reject) {
@@ -34,7 +36,7 @@ let p2 = new Promise(function (resolve, reject) {
     }, 1000);
 })
 
-Promise.all([p1, p2]).then(function (data) {
+Promise.race([p1, p2]).then(function (data) {
     console.log(data);
 
 })
