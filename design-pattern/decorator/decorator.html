@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #modal {
+        height: 200px;
+        width: 200px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px solid red;
+    }
+</style>
+
+<body>
+    <button id='open'>打开</button>
+    <button id='close'>关闭</button>
+    <script>
+
+        const Modal = (function () {
+            let instance = null
+            return function () {
+                if (!instance) {
+                    let div = document.createElement('div')
+                    div.innerHTML = '这是个弹窗'
+                    div.style.display = 'none'
+                    div.id = 'modal'
+                    instance = div
+                    document.body.appendChild(instance)
+                }
+                return instance
+            }
+        })()
+
+        // function openModal() {
+        //     const modal = new Modal()
+        //     modal.style.display = 'block'
+        // }
+
+        // function changeButtomText() {
+        //     const btn = document.getElementById('open')
+        //     btn.innerHTML = '快去登录'
+        // }
+
+        // function disableButton() {
+        //     const btn = document.getElementById('open')
+        //     btn.setAttribute("disable", true)
+        // }
+
+        // function changeButtonStatus() {
+        //     changeButtomText()
+        //     disableButton()
+        // }
+
+
+
+        // document.getElementById('open').addEventListener('click', function () {
+        //     openModal()
+        //     changeButtonStatus()
+        // })
+        // document.getElementById('close').addEventListener('click', function () {
+        //     let md = new Modal()
+        //     md.style.display = 'none'
+        // })
+
+        // class OpenButton {
+        //     onclick() {
+        //         const modal = new Modal()
+        //         modal.style.display = 'block'
+        //     }
+        // }
+
+        // class Decorator {
+        //     constructor(open_button) {
+        //         this.open_button = open_button
+        //     }
+
+        //     onclick() {
+        //         this.open_button.onclick()
+        //         this.changeButtonStatus()
+        //     }
+
+        //     changeButtonStatus() {
+        //         this.changeButtonText()
+        //         this.disableButton()
+        //     }
+        //     changeButtonText() {
+        //         const btn = document.getElementById('open')
+        //         btn.innerHTML = '快去登录'
+        //     }
+        //     disableButton() {
+        //         const btn = document.getElementById('open')
+        //         btn.setAttribute('disable', true)
+        //     }
+        // }
+
+        // const openBtn = new OpenButton()
+        // const decorator = new Decorator(openBtn)
+
+        // document.getElementById('open').addEventListener('click', function () {
+        //     // openBtn.onclick()
+        //     decorator.onclick()
+        // })
+
+
+        
+
+    </script>
+</body>
+
+</html>

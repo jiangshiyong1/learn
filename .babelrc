@@ -1,0 +1,4 @@
+{
+    "presets": ["evn"],
+    "plugins": ["transform-decorators-legacy"]
+}
