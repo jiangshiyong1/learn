@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+</head>
+
+<body>
+    <ul id='ul'>
+        <li id='1'>1</li>
+        <li id='2'>2</li>
+        <li id='3'>3</li>
+        <li id='4'>4</li>
+        <li id='5'>5</li>
+    </ul>
+    <button type="button" onclick="emit()">emit</button>
+</body>
+<style>
+    ul {
+        width: 100%;
+    }
+
+    li {
+        line-height: 30px;
+        height: 50px;
+        background-color: aqua;
+        margin: 10px 100px;
+        text-align: center;
+    }
+</style>
+
+<script>
+    class EventBus {
+        constructor() {
+            this.handlers = []
+        }
+
+        on(name, handler) {
+            if (!this.handlers[name]) {
+                this.handlers[name] = []
+            }
+            this.handlers[name].push(handler)
+        }
+
+        emit(name, ...args) {
+            if (this.handlers[name]) {
+                this.handlers[name].forEach(cb => {
+                    cb(...args)
+                });
+            }
+        }
+
+        off(name, handler) {
+            if (this.handlers[name]) {
+                // this.handlers[name].forEach((cb, i) => {
+                //     if (cb === handler) {
+                //         this.handlers[name].splice(i, 1)
+                //     }
+                // })
+                this.handlers[name] =this.handlers[name].filter(cb => cb !=handler)
+            }
+        }
+
+        once(name, handler) {
+            const wapper = (...args) => {
+                handler.apply(...args)
+                this.off(name, wapper)
+            }
+            this.on(name, wapper)
+        }
+    }
+    const eventBus = new EventBus()
+    document.getElementById('ul').onclick = function (event) {
+        eventBus.once(event.target.id, function () {
+            console.log(event.target.id);
+
+        })
+    }
+
+
+    function emit() {
+        eventBus.emit(1)
+        console.log(eventBus.handlers);
+
+    }
+
+
+</script>
+
+</html>

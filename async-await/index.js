@@ -7,6 +7,8 @@ function* gen() {
 
 }
 
+
+
 function auto(gen) {
     const it = gen()
 
@@ -34,8 +36,8 @@ function co(it) {
         next();
     });
 }
-// co(r()).then(function (data) {
-//     console.log(data)
-// })
+co(gen()).then(function (data) {
+    console.log(data)
+})
 
-auto(gen)
+// auto(gen)
