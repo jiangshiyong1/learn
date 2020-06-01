@@ -70,11 +70,10 @@ LRUCache.prototype.moveToHead = function (node) {
 }
 
 LRUCache.prototype.addToHead = function (node) {
-    const nodePrev = this.dummyHead
     const nodeNext = this.dummyHead.next
-    node.prev = nodePrev
+    node.prev = this.dummyHead
     node.next = nodeNext
-    nodePrev.next = node
+    this.dummyHead.next = node
     nodeNext.prev = node
 }
 
