@@ -21,7 +21,6 @@ var twoSum = function (nums, target) {
         if (hashTable[tgN]) {
             targetArr.push(hashTable[tgN])
             targetArr.push(i)
-            delete hashTable[tgN]
         } else {
             hashTable[nums[i]] = i
         }

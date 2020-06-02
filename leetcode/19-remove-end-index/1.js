@@ -13,36 +13,52 @@ function ListNode(val) {
 }
 
 
+// var removeNthFromEnd = function (head, n) {
+//     const hashTable = {}
+//     let dummyHead = new ListNode(0)
+//     let retNode = dummyHead
+//     dummyHead.next = head
+//     let count = 0
+//     while (dummyHead) {
+//         hashTable[count] = dummyHead
+//         dummyHead = dummyHead.next
+//         count++
+//     }
+//     let index = count - n - 1
+//     let prevNode = hashTable[index]
+//     let node = hashTable[index + 1]
+//     prevNode.next = node.next
+//     node.next = null
+//     return retNode.next
+
+// };
+
 var removeNthFromEnd = function (head, n) {
-    const hashTable = {}
-    let count = 0
-    while (head) {
-        // head.index = count
-        hashTable[count] = head
-        head = head.next
-        count++
-    }
-    console.log(count, n);
 
-    let index = count - n - 1
-    console.log(index);
+    const dummyHead = new ListNode(0)
 
-    let prevNode = hashTable[index]
-    let node = hashTable[index + 1]
+    dummyHead.next = head
+
+    let q = dummyHead
+
+    let s = dummyHead
 
 
-    if (prevNode) {
-        prevNode.next = node.next
-        node.next = null
-    } else {
-        node.val = null
-        node.next = null
+    // 快指针先走
+    while (n--) {
+        q = q.next
     }
 
+    // 一起走
+    while (q.next) {
+        q = q.next
+        s = s.next
+    }
+
+    s.next = s.next.next
 
 
-    return hashTable[0]
-
+    return dummyHead.next
 };
 
 const head = new ListNode(1)
