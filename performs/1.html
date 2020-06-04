@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .img {
+        width: 200px;
+        height: 200px;
+        background-color: gray;
+        padding: 10px 100px;
+    }
+
+    .pic {
+        /* // 必要的img样式 */
+        width: 200px;
+        height: 200px;
+    }
+</style>
+
+<body>
+
+    <div class="container">
+        <div class="img">
+            <img class="pic" alt="加载中" data-src="./images/1.png">
+        </div>
+        <div class="img">
+            <img class="pic" alt="加载中" data-src="./images/2.png">
+        </div>
+        <div class="img">
+            <img class="pic" alt="加载中" data-src="./images/3.png">
+        </div>
+        <div class="img">
+            <img class="pic" alt="加载中" data-src="./images/4.png">
+        </div>
+        <div class="img">
+            <img class="pic" alt="加载中" data-src="./images/5.png">
+        </div>
+        <div class="img">
+            <img class="pic" alt="加载中" data-src="./images/6.png">
+        </div>
+        <div class="img">
+            <img class="pic" alt="加载中" data-src="./images/7.png">
+        </div>
+        <div class="img">
+            <img class="pic" alt="加载中" data-src="./images/8.png">
+        </div>
+        <div class="img">
+            <img class="pic" alt="加载中" data-src="./images/9.png">
+        </div>
+        <div class="img">
+            <img class="pic" alt="加载中" data-src="./images/10.png">
+        </div>
+    </div>
+
+</body>
+
+<script>
+    const imgs = document.getElementsByTagName('img')
+    const viewHeight = window.innerHeight || document.documentElement.clientHeight
+    let num = 0
+    function lazyload() {
+        console.log('=====================');
+        // console.log(imgs.length);
+
+        for (let i = num; i < imgs.length; i++) {
+            let distance = viewHeight - imgs[i].getBoundingClientRect().top
+            // console.log('=====================');
+            // console.log(i);
+            // console.log(viewHeight, imgs[i].getBoundingClientRect().top);
+            // console.log('=====================');
+            if (distance > 0) {
+
+                imgs[i].src = imgs[i].getAttribute('data-src')
+                num = i + 1
+            }
+        }
+    }
+    window.addEventListener('scroll', throttle(()=>console.log(111), 1000), false)
+
+    window.addEventListener('scroll', throttle(lazyload, 1000), false)
+
+
+
+
+    function throttle(fn, time) {
+
+        let lastTime = 0
+        return function (...args) {
+            let context = this
+            let now = +new Date()
+            if (now - lastTime >= time) {
+                lastTime = now
+                fn.call(context, ...args)
+            }
+        }
+    }
+</script>
+
+</html>
