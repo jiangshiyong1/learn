@@ -60,7 +60,7 @@ var rotateRight = function (head, k) {
 
     while (cur.next) {
         cur = cur.next
-        size++
+        size++ 
     }
 
     let num = k % size
