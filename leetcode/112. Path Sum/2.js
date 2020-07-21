@@ -10,7 +10,7 @@ const hasPathSum = (root, sum) => {
     }
     return hasPathSum(root.left, sum - root.val) ||
         hasPathSum(root.right, sum - root.val)
-}
+} 
 
 let a= new TreeNode(5)
 let b= new TreeNode(4)
