@@ -69,21 +69,44 @@
 
 // console.log(Math.floor(1.6));
 
-let userInfo = {
-    name: "jack.ma",
-    age: 13, 
-    sex: 'male',
-    updateInfo: function () {
-        const self = this
-        //模拟xmlhttprequest请求延时	
-        setTimeout(function () {
-            self.name = "pony.ma"
-            self.age = 39
-            this.sex = 'female'
-        }, 100)
+// let userInfo = {
+//     name: "jack.ma",
+//     age: 13, 
+//     sex: 'male',
+//     updateInfo: function () {
+//         const self = this
+//         //模拟xmlhttprequest请求延时	
+//         setTimeout(function () {
+//             self.name = "pony.ma"
+//             self.age = 39
+//             this.sex = 'female'
+//         }, 100)
+//     }
+// }
+// userInfo.updateInfo()
+
+// console.log(userInfo);
+
+
+function bar() {
+    var myName = "极客世界"
+    let test1 = 100
+    if (1) {
+        let myName = "Chrome浏览器"
+        console.log(test)
     }
 }
-userInfo.updateInfo()
+function foo() {
+    var myName = "极客邦"
+    let test = 2
+    {
+        let test = 3
 
-console.log(userInfo);
+        bar()
+    }
+}
+var myName = "极客时间"
+let myAge = 10
+let test = 1
+foo()
 
